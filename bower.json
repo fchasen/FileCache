@@ -1,0 +1,16 @@
+{
+  "name": "fileCache",
+  "version": "0.0.1",
+  "main": ["built/fileCache.js", "built/fileCache.min.js"],
+  "ignore": [
+    "/tests",
+    "/src",
+    "**/*.md"
+  ],
+  "dependencies": {
+    "rsvp": ">=1.2.0"
+  },
+  "devDependencies": {
+    "qunit": ">=1.12.0"
+  }
+}
