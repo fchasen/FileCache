@@ -1,6 +1,7 @@
 (function() {
 	
-	_requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+	var _URL = window.URL || window.webkitURL;    
+	var _requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 
 	var filesystem = FileCache.Store.filesystem = function(settings, ready) {
 		this._fs;
@@ -230,6 +231,18 @@
 		return this._url;
 	}
 
+
+
+	
+    console.log(FileCache.createWorkerUrl(FileCache.request))
+    
+
+    
+   
+    // var webWorker = new Worker(blobURL);
+    // webWorker.onmessage = function(e) {
+         
+    // };
 })();
 
 

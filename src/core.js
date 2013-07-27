@@ -74,6 +74,20 @@
 	 	}
 	}
 
+	FileCache.createWorkerUrl = function(){
+    	var workerCode = '';
+
+    	Array.prototype.slice.call(arguments).forEach(function(func){
+    		var content = func.toString();
+    		content = content.substring("function () {".length+1);
+    		content = content.substring(0, content.lastIndexOf("}"));
+    		workerCode += content;
+    	});
+    	
+
+    	return _URL.createObjectURL(new Blob([workerCode]));
+    }
+
 })();
 
 

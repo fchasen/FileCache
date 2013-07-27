@@ -1,6 +1,6 @@
 (function() {
 	
-	_indexedDB  = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+	var _indexedDB  = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 
 	const DBNAME = "FileCache:"+window.location.origin;
 
