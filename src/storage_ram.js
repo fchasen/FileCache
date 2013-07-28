@@ -2,7 +2,7 @@
 	
 	var _RAMSTORE = {};
 
-	var ram = FileCache.Store.ram = function(settings, ready) {
+	var ram = Manifest.Store.ram = function(settings, ready) {
 		this._hash = _RAMSTORE;
 		this._settings = settings;
 

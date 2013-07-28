@@ -3,7 +3,7 @@
 	var _URL = window.URL || window.webkitURL;    
 	var _requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 
-	var filesystem = FileCache.Store.filesystem = function(settings, ready) {
+	var filesystem = Manifest.Store.filesystem = function(settings, ready) {
 		this._fs;
 		this._settings = settings;
 
@@ -105,7 +105,7 @@
 	}
 
 	filesystem.prototype._request = function(path, callback) {
-		var request = new FileCache.request(path);
+		var request = new Manifest.request(path);
 
 		request.succeeded = callback;
 
@@ -183,13 +183,13 @@
 	}
 	
 
-	var CacheFileFS = FileCache.CacheFileFS = function(fileEntry) {
-  		FileCache.CacheFile.call(this);
+	var CacheFileFS = Manifest.CacheFileFS = function(fileEntry) {
+  		Manifest.CacheFile.call(this);
 
   		this._fileEntry = fileEntry;
 	}
 
-	CacheFileFS.prototype = Object.create(FileCache.CacheFile.prototype);
+	CacheFileFS.prototype = Object.create(Manifest.CacheFile.prototype);
 	CacheFileFS.prototype.constructor = CacheFileFS;
 
 
@@ -234,7 +234,7 @@
 
 
 	
-    console.log(FileCache.createWorkerUrl(FileCache.request))
+    // console.log(Manifest.createWorkerUrl(Manifest.request))
     
 
     

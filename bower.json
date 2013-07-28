@@ -1,7 +1,7 @@
 {
-  "name": "fileCache",
+  "name": "manifest",
   "version": "0.0.1",
-  "main": ["built/fileCache.js", "built/fileCache.min.js"],
+  "main": ["built/manifest.js", "built/manifest.min.js"],
   "ignore": [
     "/tests",
     "/src",

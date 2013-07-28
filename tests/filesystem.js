@@ -1,7 +1,7 @@
 module('Filesystem');
 
 asyncTest("Put a file to cache", 1, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	cache.put('pages/testpage.html', function(e){
 		ok(e.loaded, "File has loaded to cache");
@@ -10,7 +10,7 @@ asyncTest("Put a file to cache", 1, function() {
 });
 
 asyncTest("Get a url from cache Entry", 1, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	cache.get('pages/testpage.html', function(file){
 		start();
@@ -20,7 +20,7 @@ asyncTest("Get a url from cache Entry", 1, function() {
 
 
 asyncTest("Get text from cache", 1, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	cache.get('pages/testpage.html', function(text){
 		start();
@@ -30,7 +30,7 @@ asyncTest("Get text from cache", 1, function() {
 });
 
 asyncTest("Get xml from cache", 1, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	cache.get('pages/testpage.html', function(xml){
 		start();
@@ -39,7 +39,7 @@ asyncTest("Get xml from cache", 1, function() {
 });
 
 asyncTest("Get blob from cache", 1, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	cache.get('pages/testpage.html', function(blob){
 		start();
@@ -48,7 +48,7 @@ asyncTest("Get blob from cache", 1, function() {
 });
 
 asyncTest("urlOf file from cache", 1, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	cache.urlOf('pages/testpage.html', function(url){
 		start();
@@ -58,7 +58,7 @@ asyncTest("urlOf file from cache", 1, function() {
 });
 
 asyncTest("Get a file not in the cache", 1, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	cache.get('pages/derf.html', function(file){
 		start();
@@ -68,7 +68,7 @@ asyncTest("Get a file not in the cache", 1, function() {
 });
 
 asyncTest("Request a file not in the cache", 1, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	cache.request('pages/defaultpage.html', function(file){
 		ok(file.toUrl(), "file retrieved after cache miss");
@@ -78,7 +78,7 @@ asyncTest("Request a file not in the cache", 1, function() {
 });
 
 asyncTest("Remove a file from the cache", 3, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	// Add file
 	cache.put('pages/defaultpage.html', function(e){
@@ -107,7 +107,7 @@ asyncTest("Remove a file from the cache", 3, function() {
 
 
 asyncTest("Save a file to the cache", 2, function() {
-	var cache = new FileCache();
+	var cache = new Manifest();
 	var blob = new Blob(['Hello World'], {type: 'text/plain'});
 
 	cache.save('pages/helloword.txt', blob, function(result){
@@ -125,7 +125,7 @@ asyncTest("Save a file to the cache", 2, function() {
 });
 
 asyncTest("Expire the cache", 3, function() {
-	var cache = new FileCache({ storage: 'filesystem' });
+	var cache = new Manifest({ storage: 'filesystem' });
 
 	// Add file
 	cache.put('pages/defaultpage.html', function(e){

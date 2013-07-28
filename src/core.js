@@ -4,7 +4,7 @@
 	 var BLOB_RESPONSE = supportsURL ? "blob" : "arraybuffer";
 
 	//-- https://github.com/ebidel/filer.js/blob/master/src/filer.js#L128
-	FileCache.dataURLToBlob = function(dataURL) {
+	Manifest.dataURLToBlob = function(dataURL) {
 		var BASE64_MARKER = ';base64,';
 		if (dataURL.indexOf(BASE64_MARKER) == -1) {
 		  var parts = dataURL.split(',');
@@ -28,7 +28,7 @@
 		return new Blob([uInt8Array], {type: contentType});
 	 }
 	 
-	FileCache.request = function(url, callback, responseType){
+	Manifest.request = function(url, callback, responseType){
 	 	var xhr = new XMLHttpRequest();
 	 
 	 	this.succeeded = function(response){
@@ -74,7 +74,7 @@
 	 	}
 	}
 
-	FileCache.createWorkerUrl = function(){
+	Manifest.createWorkerUrl = function(){
     	var workerCode = '';
 
     	Array.prototype.slice.call(arguments).forEach(function(func){

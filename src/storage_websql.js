@@ -5,7 +5,7 @@
 	const DBDESC = "Cache for FileCache";
 	const TABLENAME = "FileCache";
 
-	var websql = FileCache.Store.websql = function(settings, ready) {
+	var websql = Manifest.Store.websql = function(settings, ready) {
 		this._db;
 		this._settings = settings;
 

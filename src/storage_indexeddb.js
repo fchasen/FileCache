@@ -4,7 +4,7 @@
 
 	const DBNAME = "FileCache:"+window.location.origin;
 
-	var indexeddb = FileCache.Store.indexeddb = function(settings, ready) {
+	var indexeddb = Manifest.Store.indexeddb = function(settings, ready) {
 		this._db;
 		this._settings = settings;
 

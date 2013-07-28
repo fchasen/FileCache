@@ -1,13 +1,13 @@
 module('Setup');
 
 test("Storage detection gives values", 1, function() {
-	var cache = new FileCache();
+	var cache = new Manifest();
 
 	ok( cache.getStorageMethod(), "Storage detected" );
 });
 
 test("Settings are applied", 1, function() {
-	var cache = new FileCache({ storage: 'ram' });
+	var cache = new Manifest({ storage: 'ram' });
 	// console.log(cache);
 	equal( cache.getStorageMethod(), "ram", "Storage overidden to 'ram'" );
 });
@@ -16,7 +16,7 @@ var cache;
 
 module('Auto', {
   setup: function() {
-	 cache = new FileCache();
+	 cache = new Manifest();
   }
 });
 

@@ -1,7 +1,7 @@
-FileCache
+Manifest File Cache
 ================================
 
-FileCache is a cross browser library for dynamic file storage. It detects the storage capabilities of the browser and picks the best available option. 
+Manifest File Cache is a cross browser library for dynamic file storage. It detects the storage capabilities of the browser and picks the best available option. 
 
 Storage options are:
 
@@ -14,7 +14,7 @@ Getting Started
 -------------------------
 
 ```javascript
-var cache = new FileCache({});
+var cache = new Manifest({});
 ```
 
 Default Options:

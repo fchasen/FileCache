@@ -2,7 +2,7 @@
 
 	_URL = window.URL || window.webkitURL;
 
-	var FileCache = root.FileCache = function(options) {
+	var Manifest = root.Manifest = function(options) {
 		
 		var options = options || {};
 
@@ -33,7 +33,7 @@
 	}
 
 	// Adds one or many files to store
-	FileCache.prototype.put = function(path, callback) {
+	Manifest.prototype.put = function(path, callback) {
 		var callback = callback || function(){};
 		if(!this._isReady) return this._enqueue("put", arguments);
 
@@ -46,7 +46,7 @@
 	}
 
 	// Removes one or many files from the store
-	FileCache.prototype.remove = function(path, callback) {
+	Manifest.prototype.remove = function(path, callback) {
 		var callback = callback || function(){};
 		if(!this._isReady) return this._enqueue("remove", arguments);
 
@@ -55,7 +55,7 @@
 	}
 	
 	// Get a url to file from the cache
-	FileCache.prototype.urlOf = function(path, callback) {
+	Manifest.prototype.urlOf = function(path, callback) {
 		var callback = callback || function(){};
 		if(!this._isReady) return this._enqueue("urlOf", arguments);
 
@@ -69,7 +69,7 @@
 	}
 
 	// Get a file from the cache as: blob | text | xml
-	FileCache.prototype.get = function(path, callback, as) {
+	Manifest.prototype.get = function(path, callback, as) {
 		var callback = callback || function(){};
 		var file;
 
@@ -97,7 +97,7 @@
 	} 
 
 	// Get a file from the cache or network as: blob | text | xml 
-	FileCache.prototype.request = function(path, callback, as) {
+	Manifest.prototype.request = function(path, callback, as) {
 		var callback = callback || function(){};
 		if(!this._isReady) return this._enqueue("request", arguments);
 
@@ -113,7 +113,7 @@
 	}
 
 	// Replaces stored file with a blob
-	FileCache.prototype.save = function(path, blob, callback) {
+	Manifest.prototype.save = function(path, blob, callback) {
 		var callback = callback || function(){};
 		if(!this._isReady) return this._enqueue("save", arguments);
 
@@ -121,7 +121,7 @@
 	}
 
 	// Removes all files
-	FileCache.prototype.expire = function(callback) {
+	Manifest.prototype.expire = function(callback) {
 		var callback = callback || function(){};
 		if(!this._isReady) return this._enqueue("expire", arguments);
 
@@ -129,23 +129,23 @@
 	}
 
 	// Removes all files
-	FileCache.prototype.getStorageMethod = function(callback) {
+	Manifest.prototype.getStorageMethod = function(callback) {
 		return this._storageMethod;
 	}
 
 	// Releases all cached Urls
-	FileCache.prototype.tidy = function(callback) {
+	Manifest.prototype.tidy = function(callback) {
 		
 	}
 
 
 	// PRIVATE
 
-	FileCache.prototype._error = function(err) {
+	Manifest.prototype._error = function(err) {
 		console.error(err);	
 	}
 
-	FileCache.prototype._ready = function(err) {
+	Manifest.prototype._ready = function(err) {
 		var cache = this;
 
 		this._isReady = true;
@@ -155,7 +155,7 @@
 		});
 	}
 
-	FileCache.prototype._enqueue = function(command, arguments) {
+	Manifest.prototype._enqueue = function(command, arguments) {
 		
 		this._inWaiting.push({
 			'command': command,
@@ -164,11 +164,11 @@
 
 	}
 	
-	FileCache.prototype._setStorage = function(storageMethod) {
+	Manifest.prototype._setStorage = function(storageMethod) {
 		// console.log("storageMethod", storageMethod)		
 
 		//-- Pick store type	
-		if( !storageMethod || typeof(FileCache.Store[storageMethod]) == "undefined"){
+		if( !storageMethod || typeof(Manifest.Store[storageMethod]) == "undefined"){
 			this._storageMethod = "none";	
 			this.settings.storage = "none";
 		}else{
@@ -176,13 +176,13 @@
 		}
 
 		//-- Create a new store of that type
-		return new FileCache.Store[this._storageMethod](this.settings, this._ready.bind(this));
+		return new Manifest.Store[this._storageMethod](this.settings, this._ready.bind(this));
 
 		
 
 	}
 
-	FileCache.prototype._determineStorageMethod = function() {
+	Manifest.prototype._determineStorageMethod = function() {
 		var methods = ["filesystem", "indexeddb", "websql", "ram"],
 			method = 'none';
 
@@ -197,7 +197,7 @@
 		return method;
 	}
 
-	FileCache.prototype._checkSupport = function() {
+	Manifest.prototype._checkSupport = function() {
 		var support = "filesystem indexeddb websql ram".split(' '),
 			toTest = "RequestFileSystem IndexedDB openDatabase URL".split(' ');
 
@@ -215,7 +215,7 @@
 
 	}
 
-	FileCache.prototype._testSupport = function(method) {
+	Manifest.prototype._testSupport = function(method) {
 			var prefixes = ['webkit', 'moz', 'o', 'ms'];
 
 			for ( var i = -1, len = prefixes.length; ++i < len; ){
@@ -224,21 +224,21 @@
 			return method in window;
 	}
 
-	FileCache.Store = {};
+	Manifest.Store = {};
 
 	//exports to multiple environments
   	if (typeof define === 'function' && define.amd)
 		//AMD
-		define(function(){ return FileCache; });
+		define(function(){ return Manifest; });
   	else if (typeof module != "undefined" && module.exports)
 		//Node
-		module.exports = FileCache;
+		module.exports = Manifest;
 
 })(this);
 
 (function() {
 	
-	var CacheFile = FileCache.CacheFile = function(blob) {
+	var CacheFile = Manifest.CacheFile = function(blob) {
 		this._blob = blob;
 		this._document;
 		this._text;
